@@ -1,9 +1,11 @@
 import { mainnet, sepolia } from "@starknet-react/chains";
+
+
+import { jsonRpcProvider } from "@starknet-react/core";
 import {
   StarknetConfig,
   argent,
   braavos,
-  publicProvider,
   useInjectedConnectors,
 } from "@starknet-react/core";
 import React from "react";
@@ -11,9 +13,17 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./global.css";
 
+function rpc() {
+  return {
+    nodeUrl: "https://starknet-sepolia.public.blastapi.io/rpc/v0_7"
+  }
+}
+ 
+
+
 export default function Root({ children }: { children: React.ReactNode }) {
   const chains = [sepolia, mainnet];
-  const provider = publicProvider();
+  const provider = jsonRpcProvider({ rpc });
   const { connectors } = useInjectedConnectors({
     // Show these connectors if the user has no connector installed.
     recommended: [argent(), braavos()],
@@ -21,6 +31,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
     order: "random",
   });
 
+  console.log(provider)
   return (
     <StarknetConfig
       autoConnect

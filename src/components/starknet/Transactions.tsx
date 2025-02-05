@@ -1,32 +1,34 @@
-import { useSendTransaction, useAccount, useNetwork, useContract } from "@starknet-react/core";
+import { useSendTransaction, useAccount, useContract } from "@starknet-react/core";
 import { ERC20 as erc20ABI } from "../../ABI's/ERC20";
 import { useState } from "react";
-
+import { cairo } from "starknet";
 import { useMemo } from "react";
 
 // TODO: transferir custom tokens erc20 a una dirección dada en un input por el usuario;
 export default function Transactions() {
     const { address: userAddress } = useAccount();
-	const { chain } = useNetwork();
+	// const { chain } = useNetwork();
     const [recipientAddress, setRecipientAddress] = useState("");
     const [amount, setAmount] = useState("");
     const [error, setError] = useState("");
 
 	const { contract } = useContract({
 		abi: erc20ABI as any,
-		address: chain.nativeCurrency.address,
+		//CONTRATO DE STRAK  EN SEPOLIA 
+		address: "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
 	});
 
     const calls = useMemo(() => {
         if (!userAddress || !contract || !recipientAddress || !amount) return [];
+
+		{console.log (contract)}
         try {
             return [{
                 contractAddress: contract.address,
                 entrypoint: "transfer",
                 calldata: [
                     recipientAddress,
-                    amount,
-                    "0"
+                    cairo.uint256(amount as any  * 10 ** 18),
                 ]
             }];
         } catch (err) {
