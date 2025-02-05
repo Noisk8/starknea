@@ -17,3 +17,134 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.app-container {
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    gap: 8rem; /* Aumentamos significativamente el espacio entre header y contenido */
+}
+
+.wallet-dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 4rem auto; /* Agregamos margen vertical */
+    width: 100%;
+    padding: 1rem;
+    position: relative; /* Posición relativa para el dashboard */
+    z-index: 1; /* Z-index menor que el header */
+}
+
+/* Estilo para el header */
+header {
+    width: 100%;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Aseguramos que el header tenga posición relativa */
+    z-index: 10; /* Damos un z-index mayor al header */
+    margin-top: 2rem; /* Agregamos espacio arriba del header */
+}
+
+.dashboard-section {
+    min-width: 0;
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustamos el contenedor de transferencias */
+.transfer-container {
+    max-width: 100%;
+    height: 100%;
+    background-color: transparent; /* Quitamos el fondo ya que ahora está en dashboard-section */
+    padding: 0; /* Quitamos el padding ya que está en dashboard-section */
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.transfer-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.transfer-button:hover {
+    background-color: #0056b3;
+}
+
+.transfer-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #dc3545;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background-color: #f8d7da;
+}
+
+.status-message {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    text-align: center;
+    color: #0056b3;
+}
+
+.transaction-info {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #e9ecef;
+    border-radius: 6px;
+}
+
+.transaction-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.transaction-info a:hover {
+    text-decoration: underline;
+}
+
+/* Mantenemos el responsive */
+@media (max-width: 768px) {
+    .app-container {
+        gap: 4rem; /* Reducimos el espacio en móviles */
+    }
+    
+    .wallet-dashboard {
+        margin: 2rem auto; /* Reducimos márgenes en móviles */
+        grid-template-columns: 1fr;
+    }
+}

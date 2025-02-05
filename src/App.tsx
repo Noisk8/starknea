@@ -5,19 +5,17 @@ import  Transactions from "./components/starknet/Transactions";
 
 function App() {
   return (
-    <main className=" flex flex-col items-center justify-center min-h-screen gap-12">
+    <div className="app-container">
       <Header />
-      <Balances />
-
-
-      <br></br>
-     
-     <Transactions />
-      <div className="flex flex-row gap-12">
-       
-  
+      <div className="wallet-dashboard">
+        <div className="dashboard-section">
+          <Balances />
+        </div>
+        <div className="dashboard-section">
+          <Transactions />
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
 
