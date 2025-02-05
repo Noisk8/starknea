@@ -16,14 +16,22 @@ export default function Balances() {
   })
 
 
-  if (isLoading || isBalanceLoading ) return <div>Loading...</div>;
-  if (isError || isBalanceError || !data) return <div>{error?.message || balanceError?.message}</div>;
+
+
+  if (isLoading || isBalanceLoading  ) return <div>Loading...</div>;
+  if (isError || isBalanceError ||   !data) return <div>{error?.message || balanceError?.message }</div>;
 
   return (
     <div className="fixed">
-      {data.value.toString()} {data.symbol} 
+ {data.symbol} 
+      <p>{data.value.toString()} </p>
+     
       <br/>
-      {balanceData?.formatted} {balanceData?.symbol}
+      <br/>
+      
+      <p>{balanceData?.symbol}</p>
+   
+      {balanceData?.formatted} 
 
 
     </div>
